@@ -1,20 +1,24 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+//
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import React, { useEffect, useState } from "react";
+import {
+  BlossomThemeProvider,
+  ComponentManager,
+  useBlossomTheme,
+} from "@react-native-blossom-ui/components";
+import { SplashScreen, Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { useFonts } from "expo-font";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+import lightTheme from "../lightTheme.json";
+import darkTheme from "../darkTheme.json";
+import options from "../options.json";
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
+export default function Layout() {
+  const [isDark, setIsDark] = useState(false);
+
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   useEffect(() => {
@@ -28,12 +32,51 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <BlossomThemeProvider
+      theme={isDark ? darkTheme : lightTheme}
+      isDark={isDark}
+      options={options}
+    >
+      <Container />
+      <StatusBar style={isDark ? "light" : "dark"} />
+    </BlossomThemeProvider>
+  );
+}
+
+export const Container = () => {
+  const { colors } = useBlossomTheme();
+
+  useEffect(() => {
+    ComponentManager.setDefaultProps({
+      ProgressBar(props, theme) {
+        return {
+          style: {
+            marginVertical: 8,
+          },
+        };
+      },
+    });
+  }, []);
+
+  return (
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: colors.primary600,
+        },
+        headerTintColor: colors.bgLight100,
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+      }}
+    >
+      {/* Optionally configure static options outside the route. */}
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
+
       <StatusBar style="auto" />
-    </ThemeProvider>
+    </Stack>
   );
-}
+};

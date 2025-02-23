@@ -935,7 +935,7 @@
   resolved "https://registry.yarnpkg.com/@expo/config-types/-/config-types-52.0.4.tgz#6ff4fbbfd0d09894d8c50d15a89816cc2d9d2531"
   integrity sha512-oMGrb2o3niVCIfjnIHFrOoiDA9jGb0lc3G4RI1UiO//KjULBaQr3QTBoKDzZQwMqDV1AgYgSr9mgEcnX3LqhIg==
 
-"@expo/config@~10.0.10", "@expo/config@~10.0.9":
+"@expo/config@~10.0.10":
   version "10.0.10"
   resolved "https://registry.yarnpkg.com/@expo/config/-/config-10.0.10.tgz#8d0a70b3f201bf1de32d81765f34c4aae2df55a5"
   integrity sha512-wI9/iam3Irk99ADGM/FyD7YrrEibIZXR4huSZiU5zt9o3dASOKhqepiNJex4YPiktLfKhYrpSEJtwno1g0SrgA==
@@ -1015,7 +1015,7 @@
     temp-dir "~2.0.0"
     unique-string "~2.0.0"
 
-"@expo/json-file@^9.0.1", "@expo/json-file@^9.0.2", "@expo/json-file@~9.0.1", "@expo/json-file@~9.0.2":
+"@expo/json-file@^9.0.2", "@expo/json-file@~9.0.1", "@expo/json-file@~9.0.2":
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/@expo/json-file/-/json-file-9.0.2.tgz#ec508c2ad17490e0c664c9d7e2ae0ce65915d3ed"
   integrity sha512-yAznIUrybOIWp3Uax7yRflB0xsEpvIwIEqIjao9SGi2Gaa+N0OamWfe0fnXBSWF+2zzF4VvqwT4W5zwelchfgw==
@@ -1481,6 +1481,13 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-compose-refs" "1.0.0"
+
+"@react-native-blossom-ui/components@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@react-native-blossom-ui/components/-/components-0.5.0.tgz#f8d1733a88fb713addcbd5d3dda279b63af70714"
+  integrity sha512-pe2IvC2DN+lY4Lev/c44Kc0xi7LzgL480nQYwNHn9x4EnmUMjtiWZOvs9x01t94M+fFMf7ym29fBPCJrgTTlwA==
+  dependencies:
+    deepmerge "4.3.1"
 
 "@react-native/assets-registry@0.76.7":
   version "0.76.7"
@@ -2026,6 +2033,11 @@ acorn@^8.1.0, acorn@^8.11.0, acorn@^8.8.1, acorn@^8.8.2:
   version "8.14.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.14.0.tgz#063e2c70cac5fb4f6467f0b11152e04c682795b0"
   integrity sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==
+
+add@2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/add/-/add-2.0.6.tgz#248f0a9f6e5a528ef2295dbeec30532130ae2235"
+  integrity sha512-j5QzrmsokwWWp6kUcJQySpbG+xfOBqqKnup3OIk1pz+kB/80SLorZ9V8zHFLO92Lcd+hbvq8bT+zOGoPkmBV0Q==
 
 agent-base@6:
   version "6.0.2"
@@ -2582,6 +2594,11 @@ chownr@^2.0.0:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-2.0.0.tgz#15bfbe53d2eab4cf70f18a8cd68ebe5b3cb1dece"
   integrity sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
 
+chroma-js@3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-3.1.2.tgz#cfb807045182228574eae5380587cdb830e985d6"
+  integrity sha512-IJnETTalXbsLx1eKEgx19d5L6SRM7cH4vINw/99p/M11HCuXGRWL+6YmCm7FWFGIo6dtWuQoQi1dc5yQ7ESIHg==
+
 chrome-launcher@^0.15.2:
   version "0.15.2"
   resolved "https://registry.yarnpkg.com/chrome-launcher/-/chrome-launcher-0.15.2.tgz#4e6404e32200095fdce7f6a1e1004f9bd36fa5da"
@@ -2957,7 +2974,7 @@ deep-extend@^0.6.0:
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
   integrity sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==
 
-deepmerge@^4.2.2, deepmerge@^4.3.1:
+deepmerge@4.3.1, deepmerge@^4.2.2, deepmerge@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.3.1.tgz#44b5f2147cd3b00d4b56137685966f26fd25dd4a"
   integrity sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==
@@ -4377,13 +4394,13 @@ jest-environment-node@^29.6.3, jest-environment-node@^29.7.0:
     jest-mock "^29.7.0"
     jest-util "^29.7.0"
 
-jest-expo@~52.0.3:
-  version "52.0.4"
-  resolved "https://registry.yarnpkg.com/jest-expo/-/jest-expo-52.0.4.tgz#d8316fdcaa9c43fc7f57f2585251cf6f665b888e"
-  integrity sha512-6+MDQnpwWi3Cka+GvzncCEw8y8LTLiulf9RMII9MZMmML68dRp+njYvZQQutRkF+WwVZLM2id59puYAsKBL1Qg==
+jest-expo@~52.0.5:
+  version "52.0.5"
+  resolved "https://registry.yarnpkg.com/jest-expo/-/jest-expo-52.0.5.tgz#4c86ab1021b1b7307441157dc3dab9125960f88f"
+  integrity sha512-2jjdE81tWxH5PPe5SGR9rxLZbPtuM7ihEL+43xlJIjgxcplsMpFV9Nb8r5h3IpG+aVDjMiQXqF25n9dqqD09OQ==
   dependencies:
-    "@expo/config" "~10.0.9"
-    "@expo/json-file" "^9.0.1"
+    "@expo/config" "~10.0.10"
+    "@expo/json-file" "^9.0.2"
     "@jest/create-cache-key-function" "^29.2.1"
     "@jest/globals" "^29.2.1"
     babel-jest "^29.2.1"
@@ -7409,6 +7426,11 @@ yargs@^17.3.1, yargs@^17.6.2:
     string-width "^4.2.3"
     y18n "^5.0.5"
     yargs-parser "^21.1.1"
+
+yarn@1.22.22:
+  version "1.22.22"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.22.tgz#ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+  integrity sha512-prL3kGtyG7o9Z9Sv8IPfBNrWTDmXB4Qbes8A9rEzt6wkJV8mUvoirjU0Mp3GGAU06Y0XQyA3/2/RQFVuK7MTfg==
 
 yocto-queue@^0.1.0:
   version "0.1.0"
