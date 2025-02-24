@@ -1,79 +1,174 @@
-import { Image, StyleSheet, Platform } from "react-native";
+import { FlatList, Image, ScrollView, StyleSheet } from "react-native";
 
-import { HelloWave } from "@/components/HelloWave";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import { Select, TextInput } from "@react-native-blossom-ui/components";
+import {
+  SegmentedButton,
+  Spacer,
+  Text,
+  useBlossomTheme,
+  View,
+} from "@react-native-blossom-ui/components";
+import { ImageItem } from "@/components";
+import { categoryList } from "@/constants";
+import { useCallback, useMemo } from "react";
 
 export default function HomeScreen() {
+  const { colors } = useBlossomTheme();
+
+  const buttonCommonProps = useMemo(
+    () => ({
+      withCheckIcon: false,
+      style: {
+        borderWidth: 1,
+        borderColor: colors.accent500,
+      },
+    }),
+    [colors.accent500]
+  );
+
+  const Title = useCallback(
+    ({ children }: { children: string }) => (
+      <>
+        <Spacer height={24} />
+        <Text typography="h6">{children}</Text>
+        <Spacer height={24} />
+      </>
+    ),
+    []
+  );
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("@/assets/images/partial-react-logo.png")}
-          style={styles.reactLogo}
+    <View>
+      <ScrollView contentContainerStyle={styles.container}>
+        <SegmentedButton
+          data={[
+            {
+              title: "Entertainment",
+              ...buttonCommonProps,
+            },
+            {
+              title: "Academic",
+              ...buttonCommonProps,
+            },
+            {
+              title: "Volunteering",
+              ...buttonCommonProps,
+            },
+          ]}
+          activeColor={colors.accent100}
+          // withVerticalDivider
+          borderRadius={8}
+          size="large"
         />
-      }
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
-          to see changes. Press{" "}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: "cmd + d",
-              android: "cmd + m",
-              web: "F12",
-            })}
-          </ThemedText>{" "}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this
-          starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{" "}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText>{" "}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{" "}
-          directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+
+        <Title>Pick Your Category</Title>
+
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={categoryList}
+          renderItem={({ item }) => (
+            <ImageItem url={item.url} asset={item.asset} title={item.title} />
+          )}
+        />
+        <Spacer height={16} />
+
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={categoryList}
+          renderItem={({ item }) => (
+            <ImageItem url={item.url} asset={item.asset} title={item.title} />
+          )}
+        />
+
+        <Title>Most Popular</Title>
+
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={categoryList}
+          renderItem={({ item }) => (
+            <ImageItem
+              url={item.url}
+              width={300}
+              height={125}
+              asset={item.asset}
+            />
+          )}
+        />
+
+        <Title>Resume Your Booking</Title>
+
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={categoryList}
+          renderItem={({ item }) => (
+            <ImageItem
+              url={item.url}
+              // width={300}
+              // height={125}
+              asset={item.asset}
+            />
+          )}
+        />
+
+        <Title>Recommended for you</Title>
+
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={categoryList}
+          renderItem={({ item }) => (
+            <ImageItem
+              url={item.url}
+              width={300}
+              height={125}
+              asset={item.asset}
+            />
+          )}
+        />
+
+        <Title>Offers for you</Title>
+
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={categoryList}
+          renderItem={({ item }) => (
+            <ImageItem
+              url={item.url}
+              // width={300}
+              // height={125}
+              asset={item.asset}
+            />
+          )}
+        />
+
+        <Title>Seasonal Events</Title>
+
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={categoryList}
+          renderItem={({ item }) => (
+            <ImageItem
+              url={item.url}
+              // width={300}
+              // height={125}
+              asset={item.asset}
+              title={item.title}
+            />
+          )}
+        />
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
+  container: {
+    paddingHorizontal: 10,
+    paddingBottom: 160,
   },
 });
