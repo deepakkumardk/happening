@@ -1,19 +1,42 @@
-import { Tabs } from "expo-router";
-import React from "react";
-import { Platform } from "react-native";
+import React, { useEffect } from "react";
+import { Image, Platform } from "react-native";
+import { router, Tabs, useNavigation } from "expo-router";
 
 import { Icon, useBlossomTheme } from "@react-native-blossom-ui/components";
 
 export default function TabLayout() {
   const { colors } = useBlossomTheme();
 
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: "Home",
+      headerTitle({}) {
+        return (
+          <Image
+            source={require("@/assets/images/icon.png")}
+            style={{
+              width: 100,
+              height: 48,
+            }}
+          />
+        );
+      },
+      headerRight: () => (
+        <Icon
+          name="notifications-outline"
+          onPress={() => router.push("/notifications")}
+        />
+      ),
+    });
+  }, [navigation]);
+
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: colors.primary500,
         headerShown: false,
-        // tabBarButton: HapticTab,
-        // tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: {
             // Use a transparent background on iOS to show the blur effect

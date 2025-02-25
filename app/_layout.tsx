@@ -4,15 +4,17 @@ import React, { useEffect, useState } from "react";
 import {
   BlossomThemeProvider,
   ComponentManager,
+  Icon,
   useBlossomTheme,
 } from "@react-native-blossom-ui/components";
-import { SplashScreen, Stack } from "expo-router";
+import { router, SplashScreen, Stack, Tabs } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 
 import lightTheme from "../lightTheme.json";
 import darkTheme from "../darkTheme.json";
 import options from "../options.json";
+import { Image } from "react-native";
 
 export default function Layout() {
   const [isDark, setIsDark] = useState(false);
@@ -62,17 +64,19 @@ export const Container = () => {
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: colors.primary600,
+          backgroundColor: colors.background100,
         },
-        headerTintColor: colors.bgLight100,
+        headerTintColor: colors.text100,
         headerTitleStyle: {
           fontWeight: "bold",
         },
+        headerShown: true,
       }}
     >
       {/* Optionally configure static options outside the route. */}
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="event/[id]" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
 

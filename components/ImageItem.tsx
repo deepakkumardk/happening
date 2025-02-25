@@ -4,7 +4,7 @@ import {
   View,
 } from "@react-native-blossom-ui/components";
 import React, { memo } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image, Pressable, StyleSheet } from "react-native";
 
 function ImageItem({
   url,
@@ -12,17 +12,22 @@ function ImageItem({
   width = 90,
   height = 80,
   asset,
+  onItemPress,
 }: {
   url: string;
   width?: number;
   height?: number;
   title?: string;
   asset?: any;
+  onItemPress?: () => void;
 }) {
   const { colors } = useBlossomTheme();
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.accent100 }]}>
+    <Pressable
+      style={[styles.container, { backgroundColor: colors.accent100 }]}
+      onPress={onItemPress}
+    >
       <Image
         source={asset || { uri: url }}
         style={[
@@ -37,7 +42,7 @@ function ImageItem({
         height={height}
       />
       {title ? <Text style={styles.text}>{title}</Text> : null}
-    </View>
+    </Pressable>
   );
 }
 
