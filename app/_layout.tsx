@@ -4,17 +4,15 @@ import React, { useEffect, useState } from "react";
 import {
   BlossomThemeProvider,
   ComponentManager,
-  Icon,
   useBlossomTheme,
 } from "@react-native-blossom-ui/components";
-import { router, SplashScreen, Stack, Tabs } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 
 import lightTheme from "../lightTheme.json";
 import darkTheme from "../darkTheme.json";
 import options from "../options.json";
-import { Image } from "react-native";
 
 export default function Layout() {
   const [isDark, setIsDark] = useState(false);

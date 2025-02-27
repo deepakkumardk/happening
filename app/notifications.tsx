@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Link, Stack } from "expo-router";
+import { Stack } from "expo-router";
 
 import { Text, View } from "@react-native-blossom-ui/components";
 

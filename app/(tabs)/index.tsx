@@ -20,10 +20,12 @@ import { ImageItem, LocationModalContent } from "@/components";
 import {
   categoryList,
   categoryList2,
+  offersList,
   popularList,
   recentLocationsList,
   recommendationList,
   resumeBookingList,
+  seasonalEventsList,
 } from "@/constants";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { router } from "expo-router";
@@ -75,8 +77,10 @@ export default function HomeScreen() {
         <Icon name="location" style={{ marginHorizontal: 12 }} />
         <View style={{ backgroundColor: "transparent" }}>
           <Text status="accent" typography="b2">
+            {/* @ts-ignore */}
             {selectedLocation.city}
           </Text>
+          {/* @ts-ignore */}
           <Text typography="l2"> {selectedLocation.address}</Text>
         </View>
       </Pressable>
@@ -178,7 +182,7 @@ export default function HomeScreen() {
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={categoryList}
+          data={offersList}
           renderItem={({ item }) => (
             <ImageItem
               url={item.url}
@@ -194,7 +198,7 @@ export default function HomeScreen() {
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={categoryList}
+          data={seasonalEventsList}
           renderItem={({ item }) => (
             <ImageItem
               url={item.url}

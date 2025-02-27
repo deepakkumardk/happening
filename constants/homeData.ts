@@ -135,3 +135,54 @@ export const recentLocationsList = [
     address: "PVR Plaza, Gurugram",
   },
 ];
+
+export const offersList = [
+  {
+    url: "",
+    asset: require("@/assets/images/341.png"),
+    title: "",
+  },
+  {
+    url: "",
+    asset: require("@/assets/images/342.png"),
+    title: "",
+  },
+  {
+    url: "",
+    asset: require("@/assets/images/343.png"),
+    title: "",
+  },
+  {
+    url: "",
+    asset: require("@/assets/images/344.png"),
+    title: "",
+  },
+];
+
+export const seasonalEventsList = [
+  {
+    url: "",
+    asset: require("@/assets/images/351.png"),
+    title: "Diwali",
+  },
+  {
+    url: "",
+    asset: require("@/assets/images/352.png"),
+    title: "Halloween",
+  },
+  {
+    url: "",
+    asset: require("@/assets/images/353.png"),
+    title: "Christmas",
+  },
+  {
+    url: "",
+    asset: require("@/assets/images/354.png"),
+    title: "Eid",
+  },
+  {
+    url: "",
+    asset: require("@/assets/images/355.png"),
+    title: "Dussehra",
+  },
+];

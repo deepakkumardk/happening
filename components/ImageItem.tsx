@@ -4,7 +4,7 @@ import {
   View,
 } from "@react-native-blossom-ui/components";
 import React, { memo } from "react";
-import { Image, Pressable, StyleSheet } from "react-native";
+import { Image, Pressable, StyleSheet, TouchableOpacity } from "react-native";
 
 function ImageItem({
   url,
@@ -24,7 +24,8 @@ function ImageItem({
   const { colors } = useBlossomTheme();
 
   return (
-    <Pressable
+    <TouchableOpacity
+      activeOpacity={0.5}
       style={[styles.container, { backgroundColor: colors.accent100 }]}
       onPress={onItemPress}
     >
@@ -42,7 +43,7 @@ function ImageItem({
         height={height}
       />
       {title ? <Text style={styles.text}>{title}</Text> : null}
-    </Pressable>
+    </TouchableOpacity>
   );
 }
 
