@@ -22,7 +22,6 @@ export default function SelectSeatsScreen() {
 
   const [data, setData] = useState(selectSeatsData);
   const [selectedSeats, setSelectedSeats] = useState<any[]>(data.seat_classes);
-  console.log("SelectSeatsScreen -> selectedSeats", selectedSeats);
 
   const sumAmount = useMemo(() => {
     return selectedSeats.reduce(
@@ -46,7 +45,7 @@ export default function SelectSeatsScreen() {
               style={[
                 styles.seatTitleTop,
                 {
-                  backgroundColor: colors.bgLight300,
+                  backgroundColor: colors.background400,
                 },
               ]}
             >
@@ -56,14 +55,13 @@ export default function SelectSeatsScreen() {
 
             {data.seat_classes.map((item, index) => (
               <LinearGradient
-                key={item.id}
+                key={"LG" + item.id}
                 colors={[item.start_color, item.end_color]}
                 start={{ x: -1, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={[
+                  styles.classCard,
                   {
-                    marginBottom: 2,
-                    alignItems: "center",
                     padding: 10 + 10 * index,
                   },
                   index === data.seat_classes.length - 1 && {
@@ -84,9 +82,8 @@ export default function SelectSeatsScreen() {
           <Divider color={colors.accent300} />
 
           {data.seat_classes.map((item, index) => (
-            <>
+            <View key={"Row" + item.id}>
               <View
-                key={"Row" + item.id}
                 row
                 style={[
                   styles.classPriceRow,
@@ -99,13 +96,15 @@ export default function SelectSeatsScreen() {
                     name="ticket-confirmation"
                     color={item.color}
                   />
-                  <Text style={styles.seatsLeftText}>
-                    {item.name} ₹ {item.price}
+                  <View>
+                    <Text style={styles.seatsLeftText}>
+                      {item.name} ₹ {item.price}
+                    </Text>
                     <Text style={{ color: colors.warning600 }}>
                       {"  "}
                       {item.seats_left} Seats Left
                     </Text>
-                  </Text>
+                  </View>
                 </View>
                 <Counter
                   count={
@@ -132,7 +131,7 @@ export default function SelectSeatsScreen() {
                 />
               </View>
               <Divider color={colors.accent300} />
-            </>
+            </View>
           ))}
         </ScrollView>
 
@@ -162,6 +161,10 @@ export default function SelectSeatsScreen() {
 }
 
 const styles = StyleSheet.create({
+  classCard: {
+    marginBottom: 2,
+    alignItems: "center",
+  },
   sumText: {
     marginBottom: 8,
   },
@@ -170,6 +173,7 @@ const styles = StyleSheet.create({
   },
   center: {
     alignSelf: "center",
+    alignItems: "center",
   },
   seatTitleTop: {
     alignSelf: "center",
@@ -201,7 +205,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   card: {
-    margin: 16,
+    marginHorizontal: 16,
     marginBottom: 8,
   },
 });

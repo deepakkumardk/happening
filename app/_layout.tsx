@@ -6,7 +6,7 @@ import {
   ComponentManager,
   useBlossomTheme,
 } from "@react-native-blossom-ui/components";
-import { SplashScreen, Stack } from "expo-router";
+import { router, SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 
@@ -17,7 +17,6 @@ import { useIsDarkStore } from "@/store";
 
 export default function Layout() {
   const isDark = useIsDarkStore((state) => state.isDark);
-  console.log("Layout -> isDark", isDark);
 
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
@@ -26,6 +25,7 @@ export default function Layout() {
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
+      router.replace("/login");
     }
   }, [loaded]);
 
@@ -75,6 +75,7 @@ export const Container = () => {
     >
       {/* Optionally configure static options outside the route. */}
       <Stack>
+        <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="event/[id]" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />

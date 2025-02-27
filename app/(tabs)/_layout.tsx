@@ -117,9 +117,10 @@ export default function TabLayout() {
   );
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   logo: {
     width: 100,
     height: 48,
+    alignSelf: "center",
   },
 });

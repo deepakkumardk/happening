@@ -76,16 +76,19 @@ export const categoryList2 = [
 
 export const popularList = [
   {
+    id: 1,
     url: "",
     asset: require("@/assets/images/321.png"),
     title: "Plays",
   },
   {
+    id: 2,
     url: "",
     asset: require("@/assets/images/322.png"),
     title: "Pets Show",
   },
   {
+    id: 3,
     url: "",
     asset: require("@/assets/images/323.png"),
     title: "Pets Show",

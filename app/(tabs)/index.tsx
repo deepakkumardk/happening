@@ -1,6 +1,6 @@
+import React from "react";
 import {
   FlatList,
-  Image,
   Modal,
   Pressable,
   ScrollView,
@@ -9,7 +9,6 @@ import {
 
 import {
   Icon,
-  ModalContent,
   SegmentedButton,
   Spacer,
   Text,
@@ -29,8 +28,7 @@ import {
 } from "@/constants";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { router } from "expo-router";
-import { getCurrentLocation } from "@/app/modules";
-import React from "react";
+import { getCurrentLocation } from "@/modules";
 
 export default function HomeScreen() {
   const { colors } = useBlossomTheme();
@@ -78,7 +76,7 @@ export default function HomeScreen() {
         <View style={styles.locationName}>
           <Text status="accent" typography="b2">
             {/* @ts-ignore */}
-            {selectedLocation.city}
+            {selectedLocation.city || "Select Location"}
           </Text>
           {/* @ts-ignore */}
           <Text typography="l2"> {selectedLocation.address}</Text>
@@ -86,6 +84,8 @@ export default function HomeScreen() {
       </Pressable>
 
       <ScrollView contentContainerStyle={styles.container}>
+        <Spacer height={16} />
+
         <SegmentedButton
           data={[
             {
@@ -140,7 +140,7 @@ export default function HomeScreen() {
               width={300}
               height={125}
               asset={item.asset}
-              onItemPress={() => router.push("/event/[id]/")}
+              onItemPress={() => router.push(`/event/${item.id}/`)}
             />
           )}
         />
@@ -152,12 +152,7 @@ export default function HomeScreen() {
           showsHorizontalScrollIndicator={false}
           data={resumeBookingList}
           renderItem={({ item }) => (
-            <ImageItem
-              url={item.url}
-              width={110}
-              // height={125}
-              asset={item.asset}
-            />
+            <ImageItem url={item.url} width={110} asset={item.asset} />
           )}
         />
 
@@ -184,12 +179,7 @@ export default function HomeScreen() {
           showsHorizontalScrollIndicator={false}
           data={offersList}
           renderItem={({ item }) => (
-            <ImageItem
-              url={item.url}
-              width={110}
-              // height={125}
-              asset={item.asset}
-            />
+            <ImageItem url={item.url} width={110} asset={item.asset} />
           )}
         />
 
@@ -200,13 +190,7 @@ export default function HomeScreen() {
           showsHorizontalScrollIndicator={false}
           data={seasonalEventsList}
           renderItem={({ item }) => (
-            <ImageItem
-              url={item.url}
-              // width={300}
-              // height={125}
-              asset={item.asset}
-              title={item.title}
-            />
+            <ImageItem url={item.url} asset={item.asset} title={item.title} />
           )}
         />
       </ScrollView>
@@ -236,7 +220,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   locationIcon: {
-    marginHorizontal: 12,
+    marginHorizontal: 8,
   },
   locationModalContainer: {
     paddingHorizontal: 20,
@@ -260,7 +244,8 @@ const styles = StyleSheet.create({
   locationContainer: {
     alignItems: "center",
     flexDirection: "row",
-    padding: 12,
-    margin: 8,
+    paddingVertical: 4,
+
+    margin: 12,
   },
 });

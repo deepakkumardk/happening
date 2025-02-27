@@ -12,3 +12,16 @@ export const useIsDarkStore = create<ThemeStore>((set) => ({
       return { isDark: !state.isDark };
     }),
 }));
+
+export type AuthStore = {
+  isLoggedIn: boolean;
+  toggleAuthState: () => void;
+};
+
+export const useAuthStore = create<AuthStore>((set) => ({
+  isLoggedIn: false,
+  toggleAuthState: () =>
+    set((state) => {
+      return { isLoggedIn: !state.isLoggedIn };
+    }),
+}));

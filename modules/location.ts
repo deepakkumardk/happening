@@ -18,7 +18,6 @@ export async function getCurrentLocation() {
   }
 
   let location = await Location.getCurrentPositionAsync({});
-  console.log("getCurrentLocation -> location", JSON.stringify(location));
 
   currentLocation = {
     ...location,

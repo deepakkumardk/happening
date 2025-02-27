@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { ScrollView, View, Image, StyleSheet } from "react-native";
+import { ScrollView, Image, StyleSheet } from "react-native";
 import {
+  View,
   Text,
   Icon,
   Button,
@@ -10,12 +11,14 @@ import {
   Checkbox,
   Tooltip,
   useBlossomTheme,
+  Divider,
 } from "@react-native-blossom-ui/components";
 import { eventDetailData } from "@/constants";
 import { router, Stack } from "expo-router";
 
 export default function EventDetailsScreen() {
   const { colors } = useBlossomTheme();
+
   const [event, setEvent] = useState(eventDetailData);
   const [selectedSlot, setSelectedSlot] = useState("");
   const [showTooltip, setShowTooltip] = useState(false);
@@ -60,192 +63,200 @@ export default function EventDetailsScreen() {
           />
         </View>
 
-        <ScrollView style={styles.content}>
-          <View style={styles.card}>
-            <Card.Content>
-              <Text typography="h5" style={styles.title}>
-                {event.title}
-              </Text>
-              <View style={styles.row}>
-                <Icon name="heart" size={16} status="primary" />
-                <Text typography="l2" status="primary" style={styles.iconText}>
-                  {event.interested_count} interested
+        <ScrollView>
+          <View style={styles.content}>
+            <View style={styles.card}>
+              <Card.Content>
+                <Text typography="h5" style={styles.title}>
+                  {event.title}
                 </Text>
-                <Button
-                  size="small"
-                  mode="tinted"
-                  title="Teaser"
-                  style={styles.teaser}
-                />
-                <Chip
-                  title="Fast filling"
-                  status="warning"
-                  mode="plain"
-                  style={styles.badge}
-                />
-
-                <Checkbox
-                  checkedIcon={<Icon name="heart" color="red" />}
-                  uncheckedIcon={<Icon name="heart-outline" />}
-                />
-              </View>
-
-              <View style={styles.row}>
-                <Icon
-                  family="MaterialCommunityIcons"
-                  name="timer-sand-empty"
-                  size={16}
-                />
-                <Text typography="l2" style={styles.iconText}>
-                  {event.duration}
-                </Text>
-
-                <Icon name="person" size={16} style={styles.iconSpacing} />
-                <Text typography="l2" style={styles.iconText}>
-                  {event.age_restriction}
-                </Text>
-
-                <Icon
-                  family="MaterialCommunityIcons"
-                  name="music-circle"
-                  size={16}
-                  style={styles.iconSpacing}
-                />
-                <Text typography="l2" style={styles.iconText}>
-                  {event.genres.join(", ")}
-                </Text>
-              </View>
-
-              <View style={styles.row}>
-                <Icon name="globe" size={16} />
-                <Text typography="l2" style={styles.iconText}>
-                  {event.languages.join(", ")}
-                </Text>
-              </View>
-
-              <View style={styles.row}>
-                <Icon
-                  family="MaterialCommunityIcons"
-                  name="calendar"
-                  size={16}
-                />
-                <Text typography="l2" style={styles.iconText}>
-                  {event.date}
-                </Text>
-              </View>
-
-              <Text typography="l2" style={styles.priceText}>
-                Price:{" "}
-                <Text typography="l1">
-                  ₹{event.price_range.min} - ₹{event.price_range.max}
-                </Text>
-              </Text>
-
-              <View style={styles.locationRow}>
-                <Icon name="location-sharp" size={16} />
-                <Text typography="l1" style={styles.locationText}>
-                  {event.location.venue}
-                </Text>
-
-                <Tooltip
-                  title={event.location.venue}
-                  position="left"
-                  offset={12}
-                  visible={showTooltip}
-                  Target={
-                    <Icon
-                      name="information-circle-outline"
-                      size={16}
-                      style={styles.infoIcon}
-                      onPress={() => setShowTooltip((prev) => !prev)}
-                    />
-                  }
-                  onBackdropPress={() => {
-                    setShowTooltip(false);
-                  }}
-                />
-              </View>
-
-              {event.time_slots.map((item) => (
-                <View key={item.time} style={styles.row}>
-                  <Button
-                    size="small"
-                    mode="outlined"
-                    // @ts-ignore
-                    status={selectedSlot ? "primary" : null}
-                    onPress={() => setSelectedSlot(item.time)}
-                  >
-                    {item.time}
-                  </Button>
+                <View style={styles.row}>
+                  <Icon name="heart" size={16} status="primary" />
                   <Text
                     typography="l2"
-                    status="error"
-                    style={styles.warningText}
+                    status="primary"
+                    style={styles.iconText}
                   >
-                    {item.seats_left} Seats Left
+                    {event.interested_count} interested
+                  </Text>
+                  <Button
+                    size="small"
+                    mode="tinted"
+                    title="Teaser"
+                    style={styles.teaser}
+                  />
+                  <Chip
+                    title="Fast filling"
+                    status="warning"
+                    mode="plain"
+                    style={styles.badge}
+                  />
+
+                  <Checkbox
+                    checkedIcon={<Icon name="heart" color="red" />}
+                    uncheckedIcon={<Icon name="heart-outline" />}
+                  />
+                </View>
+
+                <View style={styles.row}>
+                  <Icon
+                    family="MaterialCommunityIcons"
+                    name="timer-sand-empty"
+                    size={16}
+                  />
+                  <Text typography="l2" style={styles.iconText}>
+                    {event.duration}
+                  </Text>
+
+                  <Icon name="person" size={16} style={styles.iconSpacing} />
+                  <Text typography="l2" style={styles.iconText}>
+                    {event.age_restriction}
+                  </Text>
+
+                  <Icon
+                    family="MaterialCommunityIcons"
+                    name="music-circle"
+                    size={16}
+                    style={styles.iconSpacing}
+                  />
+                  <Text typography="l2" style={styles.iconText}>
+                    {event.genres.join(", ")}
                   </Text>
                 </View>
-              ))}
 
-              <View style={styles.row}>
-                <Icon
-                  family="MaterialCommunityIcons"
-                  name="parking"
-                  size={16}
-                />
-                <Icon
-                  family="MaterialCommunityIcons"
-                  name="wheelchair-accessibility"
-                  size={16}
-                  style={styles.iconSpacing}
-                />
-                <Icon
-                  family="MaterialIcons"
-                  name="restaurant"
-                  size={16}
-                  style={styles.iconSpacing}
-                />
-                <Icon
-                  family="MaterialCommunityIcons"
-                  name="map"
-                  size={16}
-                  style={styles.iconSpacing}
-                />
-                <Text
-                  typography="l2"
-                  style={[
-                    styles.facilityText,
-                    {
-                      color: colors.background500,
-                    },
-                  ]}
-                >
-                  {event.facilities.nearby_distance} nearby
+                <View style={styles.row}>
+                  <Icon name="globe" size={16} />
+                  <Text typography="l2" style={styles.iconText}>
+                    {event.languages.join(", ")}
+                  </Text>
+                </View>
+
+                <View style={styles.row}>
+                  <Icon
+                    family="MaterialCommunityIcons"
+                    name="calendar"
+                    size={16}
+                  />
+                  <Text typography="l2" style={styles.iconText}>
+                    {event.date}
+                  </Text>
+                </View>
+
+                <Text typography="l2" style={styles.priceText}>
+                  Price:{" "}
+                  <Text typography="l1">
+                    ₹{event.price_range.min} - ₹{event.price_range.max}
+                  </Text>
                 </Text>
-              </View>
 
-              <Text typography="h6" style={styles.sectionTitle}>
-                Policies & Rules
-              </Text>
+                <View style={styles.locationRow}>
+                  <Icon name="location-sharp" size={16} />
+                  <Text typography="l1" style={styles.locationText}>
+                    {event.location.venue}
+                  </Text>
 
-              {event.policies.map((item) => (
-                <Text key={item} typography="l2">
-                  {"   "}• {item}
+                  <Tooltip
+                    title={event.location.venue}
+                    position="left"
+                    offset={12}
+                    visible={showTooltip}
+                    Target={
+                      <Icon
+                        name="information-circle-outline"
+                        size={16}
+                        style={styles.infoIcon}
+                        onPress={() => setShowTooltip((prev) => !prev)}
+                      />
+                    }
+                    onBackdropPress={() => {
+                      setShowTooltip(false);
+                    }}
+                  />
+                </View>
+
+                {event.time_slots.map((item) => (
+                  <View key={item.time} style={styles.row}>
+                    <Button
+                      size="small"
+                      mode="outlined"
+                      // @ts-ignore
+                      status={selectedSlot ? "primary" : null}
+                      onPress={() => setSelectedSlot(item.time)}
+                    >
+                      {item.time}
+                    </Button>
+                    <Text
+                      typography="l2"
+                      status="error"
+                      style={styles.warningText}
+                    >
+                      {item.seats_left} Seats Left
+                    </Text>
+                  </View>
+                ))}
+
+                <View style={styles.row}>
+                  <Icon
+                    family="MaterialCommunityIcons"
+                    name="parking"
+                    size={16}
+                  />
+                  <Icon
+                    family="MaterialCommunityIcons"
+                    name="wheelchair-accessibility"
+                    size={16}
+                    style={styles.iconSpacing}
+                  />
+                  <Icon
+                    family="MaterialIcons"
+                    name="restaurant"
+                    size={16}
+                    style={styles.iconSpacing}
+                  />
+                  <Icon
+                    family="MaterialCommunityIcons"
+                    name="map"
+                    size={16}
+                    style={styles.iconSpacing}
+                  />
+                  <Text
+                    typography="l2"
+                    style={[
+                      styles.facilityText,
+                      {
+                        color: colors.background500,
+                      },
+                    ]}
+                  >
+                    {event.facilities.nearby_distance} nearby
+                  </Text>
+                </View>
+
+                <Text typography="h6" style={styles.sectionTitle}>
+                  Policies & Rules
                 </Text>
-              ))}
 
-              <Text typography="h6" style={styles.sectionTitle}>
-                Offers for you
-              </Text>
+                {event.policies.map((item) => (
+                  <Text key={item} typography="l2">
+                    {"   "}• {item}
+                  </Text>
+                ))}
 
-              {event.offers.map((item) => (
-                <Text key={item} typography="l2">
-                  {"   "}• {item}
+                <Text typography="h6" style={styles.sectionTitle}>
+                  Offers for you
                 </Text>
-              ))}
-            </Card.Content>
+
+                {event.offers.map((item) => (
+                  <Text key={item} typography="l2">
+                    {"   "}• {item}
+                  </Text>
+                ))}
+              </Card.Content>
+            </View>
           </View>
         </ScrollView>
+
+        <Divider />
 
         <View style={styles.footer}>
           {selectedSlot ? null : (
@@ -273,11 +284,10 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "white",
   },
   imageContainer: {
     position: "relative",
-    backgroundColor: "#999",
+    backgroundColor: "#bbb",
   },
   eventImage: {
     width: "100%",
@@ -287,12 +297,13 @@ const styles = StyleSheet.create({
   },
   backIcon: {
     position: "absolute",
-    top: 44,
+    top: 48,
     left: 12,
+    backgroundColor: "transparent",
   },
   shareIcon: {
     position: "absolute",
-    top: 44,
+    top: 48,
     right: 12,
     borderRadius: 32,
     padding: 4,
@@ -365,8 +376,6 @@ const styles = StyleSheet.create({
   footer: {
     padding: 16,
     marginBottom: 12,
-    borderTopWidth: 1,
-    borderColor: "#ddd",
     justifyContent: "flex-end",
     flexDirection: "row",
     alignItems: "center",

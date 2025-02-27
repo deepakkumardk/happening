@@ -13,7 +13,7 @@ import {
 } from "@react-native-blossom-ui/components";
 import * as Location from "expo-location";
 
-import { getCachedLocation, getCurrentLocation } from "@/app/modules";
+import { getCachedLocation, getCurrentLocation } from "@/modules";
 
 function LocationModalContent({
   locations,
@@ -49,12 +49,12 @@ function LocationModalContent({
       <Pressable
         style={[
           styles.locationContainer,
-          { backgroundColor: colors.accent100 },
+          { backgroundColor: colors.accentTransparent100 },
         ]}
         onPress={onCurrentLocationPress}
       >
         <View style={styles.transparent} row>
-          <Icon name="location" style={styles.locationIcon} />
+          <Icon name="location-outline" style={styles.locationIcon} />
           <View style={styles.transparent}>
             <Text status="accent" typography="b2">
               {/* @ts-ignore */}
@@ -79,8 +79,9 @@ function LocationModalContent({
       <Text typography="h6">Select your location</Text>
       <Spacer height={20} />
       <Switch
-        value={true}
-        // disabled
+        value={!errorMsg}
+        position="right"
+        adjacent={false}
         label={errorMsg || "Phone location permission"}
       />
       <Spacer height={20} />
@@ -89,8 +90,8 @@ function LocationModalContent({
       <Text typography="h6">Recent locations</Text>
       <Spacer />
       {locations.map((item) => (
-        <View key={item.id} row>
-          <Icon name="location" />
+        <View key={item.id} row style={{ marginHorizontal: 8 }}>
+          <Icon name="location-outline" />
           <Radio
             position="right"
             adjacent={false}
@@ -123,7 +124,7 @@ export const styles = StyleSheet.create({
     alignSelf: "flex-end",
   },
   locationIcon: {
-    paddingHorizontal: 12,
+    padding: 8,
   },
   transparent: {
     backgroundColor: "transparent",
@@ -136,7 +137,7 @@ export const styles = StyleSheet.create({
   locationContainer: {
     alignItems: "center",
     flexDirection: "row",
-    padding: 4,
+    paddingVertical: 4,
     justifyContent: "space-between",
   },
 });
