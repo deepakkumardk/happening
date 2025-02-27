@@ -5,6 +5,7 @@ import {
   View,
 } from "@react-native-blossom-ui/components";
 import React from "react";
+import { StyleSheet } from "react-native";
 
 function Counter({
   count = 0,
@@ -18,7 +19,7 @@ function Counter({
   const { colors } = useBlossomTheme();
 
   return (
-    <View row style={{ alignItems: "center" }}>
+    <View row style={styles.center}>
       <Icon
         family="MaterialCommunityIcons"
         name="minus-box-outline"
@@ -28,7 +29,7 @@ function Counter({
         onPress={count ? onMinus : undefined}
         disabled={!count}
       />
-      <Text style={{ paddingHorizontal: 10 }}>{count}</Text>
+      <Text style={styles.countText}>{count}</Text>
       <Icon
         family="MaterialCommunityIcons"
         name="plus-box-outline"
@@ -40,3 +41,12 @@ function Counter({
 }
 
 export default Counter;
+
+const styles = StyleSheet.create({
+  countText: {
+    paddingHorizontal: 10,
+  },
+  center: {
+    alignItems: "center",
+  },
+});

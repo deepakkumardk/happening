@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Image, Platform } from "react-native";
+import { Image, Platform, StyleSheet } from "react-native";
 import { router, Tabs, useNavigation } from "expo-router";
 
 import { Icon, useBlossomTheme } from "@react-native-blossom-ui/components";
@@ -16,10 +16,7 @@ export default function TabLayout() {
         return (
           <Image
             source={require("@/assets/images/icon.png")}
-            style={{
-              width: 100,
-              height: 48,
-            }}
+            style={styles.logo}
           />
         );
       },
@@ -41,8 +38,11 @@ export default function TabLayout() {
           ios: {
             // Use a transparent background on iOS to show the blur effect
             position: "absolute",
+            backgroundColor: colors.background100,
           },
-          default: {},
+          default: {
+            backgroundColor: colors.background100,
+          },
         }),
       }}
     >
@@ -116,3 +116,10 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  logo: {
+    width: 100,
+    height: 48,
+  },
+});

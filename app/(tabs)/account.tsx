@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet } from "react-native";
 
 import {
@@ -7,9 +8,11 @@ import {
   useBlossomTheme,
   View,
 } from "@react-native-blossom-ui/components";
+import { useIsDarkStore } from "@/store";
 
 export default function AccountScreen() {
-  const {} = useBlossomTheme();
+  const toggleTheme = useIsDarkStore((state) => state.toggleTheme);
+
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
@@ -24,7 +27,11 @@ export default function AccountScreen() {
         label="Toggle Theme"
         position="right"
         adjacent={false}
-        onValueChange={() => {}}
+        value={true}
+        onChange={() => {
+          toggleTheme();
+          console.log("AccountScreen -> onValueChange");
+        }}
       />
     </View>
   );

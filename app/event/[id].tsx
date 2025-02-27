@@ -249,7 +249,7 @@ export default function EventDetailsScreen() {
 
         <View style={styles.footer}>
           {selectedSlot ? null : (
-            <Text typography="l2" style={{ marginEnd: 20 }}>
+            <Text typography="l2" style={styles.timeSlotText}>
               Select Time Slot to Proceed
             </Text>
           )}
@@ -268,6 +268,9 @@ export default function EventDetailsScreen() {
 }
 
 const styles = StyleSheet.create({
+  timeSlotText: {
+    marginEnd: 20,
+  },
   container: {
     flex: 1,
     backgroundColor: "white",

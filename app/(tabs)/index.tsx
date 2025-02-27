@@ -70,12 +70,12 @@ export default function HomeScreen() {
       <Pressable
         style={[
           styles.locationContainer,
-          { backgroundColor: colors.accent100 },
+          { backgroundColor: colors.accentTransparent100 },
         ]}
         onPress={() => setShowModal(true)}
       >
-        <Icon name="location" style={{ marginHorizontal: 12 }} />
-        <View style={{ backgroundColor: "transparent" }}>
+        <Icon name="location-outline" style={styles.locationIcon} />
+        <View style={styles.locationName}>
           <Text status="accent" typography="b2">
             {/* @ts-ignore */}
             {selectedLocation.city}
@@ -101,7 +101,7 @@ export default function HomeScreen() {
               ...buttonCommonProps,
             },
           ]}
-          activeColor={colors.accent100}
+          activeColor={colors.accentTransparent300}
           // withVerticalDivider
           borderRadius={8}
           size="large"
@@ -212,30 +212,47 @@ export default function HomeScreen() {
       </ScrollView>
 
       <Modal transparent visible={showModal} animationType="slide">
-        <View style={{ backgroundColor: "#00000040", flex: 1 }}>
-          <View
-            style={{
-              position: "absolute",
-              bottom: 0,
-              end: 0,
-              start: 0,
-            }}
-          >
-            <View style={{ marginHorizontal: 20, marginVertical: 32 }}>
+        <Pressable
+          style={styles.modalContainer}
+          onPress={() => setShowModal(false)}
+        >
+          <Pressable style={styles.bottomSheetContainer}>
+            <View style={styles.locationModalContainer}>
               <LocationModalContent
                 locations={recentLocationsList}
                 onCancelPress={() => setShowModal(false)}
                 onConfirm={setSelectedLocation}
               />
             </View>
-          </View>
-        </View>
+          </Pressable>
+        </Pressable>
       </Modal>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  locationName: {
+    backgroundColor: "transparent",
+  },
+  locationIcon: {
+    marginHorizontal: 12,
+  },
+  locationModalContainer: {
+    paddingHorizontal: 20,
+    paddingBottom: 32,
+    paddingTop: 12,
+  },
+  modalContainer: {
+    backgroundColor: "#00000040",
+    flex: 1,
+  },
+  bottomSheetContainer: {
+    position: "absolute",
+    bottom: 0,
+    end: 0,
+    start: 0,
+  },
   container: {
     paddingHorizontal: 10,
     paddingBottom: 160,
@@ -243,7 +260,7 @@ const styles = StyleSheet.create({
   locationContainer: {
     alignItems: "center",
     flexDirection: "row",
-    padding: 4,
+    padding: 12,
     margin: 8,
   },
 });

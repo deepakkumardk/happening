@@ -13,9 +13,11 @@ import { useFonts } from "expo-font";
 import lightTheme from "../lightTheme.json";
 import darkTheme from "../darkTheme.json";
 import options from "../options.json";
+import { useIsDarkStore } from "@/store";
 
 export default function Layout() {
-  const [isDark, setIsDark] = useState(false);
+  const isDark = useIsDarkStore((state) => state.isDark);
+  console.log("Layout -> isDark", isDark);
 
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),

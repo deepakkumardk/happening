@@ -1,3 +1,6 @@
+import React, { useCallback, useEffect, useState } from "react";
+import { Image, Pressable, StyleSheet } from "react-native";
+
 import {
   Button,
   Icon,
@@ -8,10 +11,8 @@ import {
   useBlossomTheme,
   View,
 } from "@react-native-blossom-ui/components";
-import React, { memo, useCallback, useEffect, useState } from "react";
-import { Image, Pressable, StyleSheet } from "react-native";
 import * as Location from "expo-location";
-import { recentLocationsList } from "@/constants";
+
 import { getCachedLocation, getCurrentLocation } from "@/app/modules";
 
 function LocationModalContent({
@@ -52,12 +53,14 @@ function LocationModalContent({
         ]}
         onPress={onCurrentLocationPress}
       >
-        <View style={{ backgroundColor: "transparent" }} row>
-          <Icon name="location" style={{ marginHorizontal: 12 }} />
-          <View style={{ backgroundColor: "transparent" }}>
+        <View style={styles.transparent} row>
+          <Icon name="location" style={styles.locationIcon} />
+          <View style={styles.transparent}>
             <Text status="accent" typography="b2">
+              {/* @ts-ignore */}
               {location.city}
             </Text>
+            {/* @ts-ignore */}
             <Text typography="l2">{location.address}</Text>
           </View>
         </View>
@@ -86,7 +89,7 @@ function LocationModalContent({
       <Text typography="h6">Recent locations</Text>
       <Spacer />
       {locations.map((item) => (
-        <View key={item.id} row style={{}}>
+        <View key={item.id} row>
           <Icon name="location" />
           <Radio
             position="right"
@@ -98,7 +101,7 @@ function LocationModalContent({
         </View>
       ))}
       <Spacer height={20} />
-      <View row style={{ alignSelf: "flex-end" }}>
+      <View row style={styles.buttonRow}>
         <Button title="Cancel" mode="plain" onPress={onCancelPress} />
         <Button
           title="Confirm"
@@ -116,6 +119,15 @@ function LocationModalContent({
 export default LocationModalContent;
 
 export const styles = StyleSheet.create({
+  buttonRow: {
+    alignSelf: "flex-end",
+  },
+  locationIcon: {
+    paddingHorizontal: 12,
+  },
+  transparent: {
+    backgroundColor: "transparent",
+  },
   radioContainer: {
     flex: 1,
     marginLeft: 8,
@@ -125,8 +137,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     padding: 4,
-    // margin: 8,
-    flex: 1,
     justifyContent: "space-between",
   },
 });

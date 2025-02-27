@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet } from "react-native";
-import { Link, Stack } from "expo-router";
+import { Stack } from "expo-router";
 
 import {
   Button,
@@ -13,7 +13,6 @@ import {
 } from "@react-native-blossom-ui/components";
 import { LinearGradient } from "expo-linear-gradient";
 
-import { eventDetailData } from "@/constants";
 import React, { useMemo, useState } from "react";
 import { selectSeatsData } from "@/constants";
 import { Counter } from "@/components";
@@ -44,16 +43,16 @@ export default function SelectSeatsScreen() {
             ]}
           >
             <View
-              style={{
-                alignSelf: "center",
-                backgroundColor: colors.bgLight300,
-                padding: 8,
-                borderRadius: 6,
-              }}
+              style={[
+                styles.seatTitleTop,
+                {
+                  backgroundColor: colors.bgLight300,
+                },
+              ]}
             >
               <Text typography="h6">Select Seats.</Text>
             </View>
-            <Spacer height={30} style={{ backgroundColor: "transparent" }} />
+            <Spacer height={30} style={styles.spacer} />
 
             {data.seat_classes.map((item, index) => (
               <LinearGradient
@@ -73,31 +72,13 @@ export default function SelectSeatsScreen() {
                   },
                 ]}
               >
-                {/* <Text style={styles.text}>Sign in with Facebook</Text> */}
-                {/* <View
-                key={item.id}
-                style={[
-                  {
-                    alignItems: "center",
-                    backgroundColor: "transparent",
-                    // backgroundColor: item.color,
-                    marginBottom: 2,
-                    padding: 10 + 10 * index,
-                  },
-                  index === data.seat_classes.length - 1 && {
-                    borderBottomLeftRadius: 10,
-                    borderBottomRightRadius: 10,
-                  },
-                ]}
-              > */}
                 <Text style={{ color: colors.text900 }}>
                   {item.name} ₹ {item.price}
                 </Text>
-                {/* </View> */}
               </LinearGradient>
             ))}
           </Card>
-          <Text style={{ alignSelf: "center" }}>Seats Layout</Text>
+          <Text style={styles.center}>Seats Layout</Text>
 
           <Spacer height={28} />
           <Divider color={colors.accent300} />
@@ -112,13 +93,13 @@ export default function SelectSeatsScreen() {
                   index === data.seat_classes.length - 1 && styles.borderRadius,
                 ]}
               >
-                <View row style={{ alignItems: "center" }}>
+                <View row style={styles.center}>
                   <Icon
                     family="MaterialCommunityIcons"
                     name="ticket-confirmation"
                     color={item.color}
                   />
-                  <Text style={{ marginLeft: 6 }}>
+                  <Text style={styles.seatsLeftText}>
                     {item.name} ₹ {item.price}
                     <Text style={{ color: colors.warning600 }}>
                       {"  "}
@@ -158,7 +139,7 @@ export default function SelectSeatsScreen() {
         <Divider />
         <View row style={styles.bottomContainer}>
           <View>
-            <Text typography="h5" status="accent" style={{ marginBottom: 8 }}>
+            <Text typography="h5" status="accent" style={styles.sumText}>
               ₹{sumAmount}
               <Text>
                 {" "}
@@ -181,6 +162,23 @@ export default function SelectSeatsScreen() {
 }
 
 const styles = StyleSheet.create({
+  sumText: {
+    marginBottom: 8,
+  },
+  seatsLeftText: {
+    marginLeft: 6,
+  },
+  center: {
+    alignSelf: "center",
+  },
+  seatTitleTop: {
+    alignSelf: "center",
+    padding: 8,
+    borderRadius: 6,
+  },
+  spacer: {
+    backgroundColor: "transparent",
+  },
   borderRadius: {
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
