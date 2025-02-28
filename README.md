@@ -7,13 +7,19 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 1. Install dependencies
 
    ```bash
-   npm install
+   yarn
    ```
 
 2. Start the app
 
    ```bash
     npx expo start
+   ```
+
+3. Start the iOS app
+
+   ```bash
+    yarn ios
    ```
 
 In the output, you'll find options to open the app in a
@@ -25,16 +31,6 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
 ## Learn more
 
 To learn more about developing your project with Expo, look at the following resources:
@@ -42,9 +38,22 @@ To learn more about developing your project with Expo, look at the following res
 - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
 - [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
+## UI library
 
-Join our community of developers creating universal apps.
+I have chose the [react-native-blossom-ui](https://github.com/deepakkumardk/react-native-blossom-ui), as it's the largest UI library out there with a lot of customization and to ship app faster.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## State Management
+
+I Chose Zustand as it simplify the state management with just store and few lines of code and it's easy to manage.
+
+## Navigation & Routing
+
+Since this is in expo and expo-router comes by default so just use it.
+
+## Styling & Theming
+
+For styling `StyleSheet` is enough, while for theming Blossom-UI done the trick as it comes in dark theme support out of the box.
+
+## Any Performance Optimization
+
+I have cached the user's current location and fetched it only once,and used react memo hook wherever possible.
